@@ -1,0 +1,7 @@
+* 								{margin: 0; padding: 0;}
+body 							{background: #000; font-family: "Helvetica Neue", "Helvetica";}
+#container				{width: 320px; overflow: hidden; float: left; height: 460px;}
+#track						{width: 6000px; height: 430px; padding-top: 5px; padding-bottom: 5px;}
+#dots							{height: 20px; width: 320px; font-size: 20px; color: #888; text-align: center;}
+#dots strong			{color: #fff;}
+.widget						{width: 290px; margin: 0 10px 0 10px; background: #333; height: 420px; -webkit-border-radius: 5px; padding: 5px; color: #fff;}
