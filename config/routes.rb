@@ -1,5 +1,8 @@
 Launchpad::Application.routes.draw do
+  resources :widgets
   devise_for :users
+  
+  root :to => "widgets#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
