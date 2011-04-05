@@ -1,0 +1,3 @@
+class CalWidget < Widget
+  
+end

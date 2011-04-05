@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110404165923) do
+ActiveRecord::Schema.define(:version => 20110405173637) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20110404165923) do
 
   create_table "widgets", :force => true do |t|
     t.integer  "user_id"
-    t.string   "archetype"
+    t.string   "type"
     t.string   "data_runner_class"
     t.text     "serialized_settings"
     t.text     "serialized_current_data"
