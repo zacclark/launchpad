@@ -5,6 +5,10 @@ class Widget < ActiveRecord::Base
     raise NonImplementedError
   end
   
+  def name
+    raise NonImplementedError
+  end
+  
   private
   
   @child_widgets = []

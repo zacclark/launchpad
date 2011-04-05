@@ -25,7 +25,18 @@
 				</div>
 			</div>
 			<div id="dots">
-				&bull; <strong>&bull;</strong> &bull; &bull;
+				<% if user_signed_in? %>
+					<% if @widgets %>
+						<span class="settings">&#x2699;</span>
+						<span class="widget selected">&bull;</span>
+						<span class="widget">&bull;</span>
+						<span class="widget">&bull;</span>
+					<% else %>
+					<span class="settings selected">&#x2699;</span>
+					<% end %>
+				<% else %>
+					<span class="selected">&#x2716;</span> <!-- x like symbol -->
+				<% end %>
 			</div>
 		</div>
 	</body>
