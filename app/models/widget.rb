@@ -15,6 +15,11 @@ class Widget < ActiveRecord::Base
 
   def self.inherited(child)
     @child_widgets << child
+    child.instance_eval do
+      def model_name
+        Widget.model_name
+      end
+    end
     super # important!
   end
   

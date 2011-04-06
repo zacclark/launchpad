@@ -3,7 +3,10 @@ Install a widget:<br />
   <% @available_widget_types.each do |aw| %>
     <div class="available_widget">
       <h2><%= aw.title %></h2>
-      <%= link_to "Add", "/widgets", :class => "add_widget" %>
+      <%= form_for aw.new do |f| %>
+        <%= f.hidden_field :type, :value => aw.to_s %>
+        <%= f.submit "Add", :class => "add_widget" %>
+      <% end %>
     </div>
   <% end %>
 </div>

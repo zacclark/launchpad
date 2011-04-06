@@ -7,15 +7,8 @@ body 							                                    {background: #000; font-family: 
 #track .widget					                              {position: relative; width: 290px; margin: 0 10px 0 10px; background: #333; height: 420px; -webkit-border-radius: 5px; padding: 5px; color: #fff;}
 #track .widget ul                                     {padding-left: 20px;}
 #track .widget .header                                {background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #777), color-stop(1.0, #555)); width: 290px; margin-left: -5px; margin-top: -5px; -webkit-border-radius: 5px 5px 0 0; padding: 5px; border-bottom: 1px solid #111;}
-#track .widget .header h2                             {font-size: 22px; text-align: center; text-shadow: 0 -1px -1px rgba(0,0,0,0.5);}
-#track .widget .footer                                {position: absolute; bottom: 0; width: 290px; margin-left: -5px; padding: 5px; background: -webkit-gradient(linear, left top, left bottom, color-stop(1.0, #666), color-stop(0.0, #555)); -webkit-border-radius: 0 0 5px 5px; border-top: 1px solid #111;}
-#track .widget .footer.save .button.save              {font-size: 14px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #767676), color-stop(1.0, #666));}
-#track .widget .footer.save .button.cancel            {font-size: 11px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #666), color-stop(1.0, #555)); float: left; margin-top: 3px;}
+#track .widget .footer                                {position: absolute; bottom: 0; width: 290px; margin-left: -5px; padding: 5px; background: #222;}
 #available_widgets                                    {margin-top: 10px; border-bottom: 1px solid #111; float: left; margin-left: -5px; width: 300px;}
 #available_widgets .available_widget                  {width: 290px; padding: 5px; background: #222; float: left; background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #333), color-stop(1.0, #282828)); border-top: 1px solid #111;}
 #available_widgets .available_widget h2               {display: block; float: left; font-size: 26px; font-weight: normal; margin-top: 8px; margin-left: 4px;}
 #available_widgets .available_widget .add_widget      {display: block; float: right; font-size: 16px; background: #4c4; padding: 5px 8px; color: #fff; text-decoration: none; -webkit-border-radius: 5px; margin: 8px 4px 8px 0; border: 1px solid rgba(255,255,255, 0.6); background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #4c4), color-stop(1.0, #2a2));}
-
-/* general */
-
-.button                                               {float: right; display: block; padding: 3px 5px; color: #fff; text-decoration: none; -webkit-border-radius: 5px; border: 1px solid rgba(255,255,255, 0.5); text-shadow: 0 -1px -1px rgba(0,0,0,0.5);}

@@ -1,0 +1,12 @@
+<%= form_for @widget do |f| %>
+
+  <div class="header">
+    <h2><%= @widget.class %> Settings</h2>
+  </div>
+
+  <div class="footer save">
+    <%= link_to "cancel", widgets_path, :class => "cancel button" unless false && @widget.serialized_settings.blank? %>
+    <%= f.submit "Save Changes", :class => "save button" %>
+  </div>
+
+<% end %>

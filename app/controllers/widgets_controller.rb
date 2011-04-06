@@ -9,4 +9,20 @@ class WidgetsController < ApplicationController
   def new
     @available_widget_types = Widget.available_widgets
   end
+  
+  def create
+    if Widget.available_widgets.collect {|w| w.to_s}.include?(params[:widget][:type])
+      @widget = eval(params[:widget][:type]).new()
+    else
+      redirect_to new_widget_path and return
+    end
+    
+    current_user.widgets << @widget
+  
+    redirect_to edit_widget_path(@widget)
+  end
+  
+  def edit
+    @widget = Widget.find(params[:id])
+  end
 end
