@@ -1,0 +1,10 @@
+<% content_for :head do -%>
+  <script type="text/javascript" charset="utf-8">
+    if (window.navigator.standalone) {
+      window.location = "<%= new_user_session_path %>"
+    }
+  </script>
+<% end -%>
+
+<h2>Launchpad<span style="color: #888; margin-left: -2px">Welcome</span></h2>
+<p style="width: 270px; margin: 20px auto">Please install the app to your home screen to continue.</p>

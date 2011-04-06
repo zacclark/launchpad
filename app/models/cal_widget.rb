@@ -1,5 +1,5 @@
 class CalWidget < Widget
-  def name
+  def self.title
     "Calendar"
   end
 end

@@ -1,6 +1,9 @@
 Install a widget:<br />
-<ul>
+<div id="available_widgets">
   <% @available_widget_types.each do |aw| %>
-    <li><%= aw.name %></li>
+    <div class="available_widget">
+      <h2><%= aw.title %></h2>
+      <%= link_to "Add", "/widgets", :class => "add_widget" %>
+    </div>
   <% end %>
-</ul>
+</div>

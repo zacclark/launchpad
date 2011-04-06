@@ -5,7 +5,7 @@ class Widget < ActiveRecord::Base
     raise NonImplementedError
   end
   
-  def name
+  def self.title
     raise NonImplementedError
   end
   

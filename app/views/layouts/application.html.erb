@@ -4,12 +4,14 @@
 		<title>Launchpad</title>
 		<%= csrf_meta_tag %>
 		<%= stylesheet_link_tag 'mobile' %>
+		<%= javascript_include_tag :defaults %>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="format-detection" content="telephone=no">
 		<meta name = "viewport" content = "width = 320, height = 460, user-scalable = no, initial-scale = 1.0">
-		<link rel="apple-touch-icon-precomposed" href="everytimezone.png"/>
+		<link rel="apple-touch-icon-precomposed" href="/images/launchpad-hi.png"/>
 		<!-- look at this for reference http://everytimezone.com/ -->
+		<%= yield :head %>
 	</head>
 	<body>
 		<div id="container">
