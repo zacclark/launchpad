@@ -4,7 +4,19 @@
       window.location = "<%= new_user_session_path %>"
     }
   </script>
+	<style type="text/css">
+		#track { margin-top: 5px; }
+		#track .widget { height: 325px; }
+		#install_helper { color: #000; background-color:#EDEDED; padding: 3px; border:2px solid #666666; bottom: -180px;position:relative; text-align:center; -webkit-border-radius:10px; -webkit-box-shadow:0 0 5px #888888; }
+		#install_helper .arrow_border {border-color: #666666 transparent transparent transparent; border-style: solid; border-width: 10px; height:0; width:0; position:absolute; bottom:-22px; left:135px;}
+		#install_helper .arrow {border-color: #EDEDED transparent transparent transparent; border-style: solid; border-width: 10px; height:0; width:0; position:absolute; bottom:-19px; left:135px;}
+	</style>
 <% end -%>
 
 <h2>Launchpad<span style="color: #888; margin-left: -2px">Welcome</span></h2>
-<p style="width: 270px; margin: 20px auto">Please install the app to your home screen to continue.</p>
+<p style="width: 270px; margin: 20px auto">You need to add Launchpad to your home screen to use it.</p>
+<div id="install_helper">
+	Touch here to install	
+	<div class="arrow_border"></div>
+	<div class="arrow"></div>
+</div>
