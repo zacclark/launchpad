@@ -1,5 +1,10 @@
 class Widget < ActiveRecord::Base
   belongs_to :user
+  serialize :serialized_settings, Hash
+  
+  def after_initialize
+    self.serialized_settings ||= {}
+  end
   
   def view
     raise NonImplementedError
