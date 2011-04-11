@@ -1,9 +1,11 @@
 class Widget < ActiveRecord::Base
   belongs_to :user
   serialize :serialized_settings, Hash
+  serialize :serialized_current_data, Hash
   
   def after_initialize
     self.serialized_settings ||= {}
+    self.serialized_current_data ||= {}
   end
   
   def view
