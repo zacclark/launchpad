@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.5'
 gem 'sqlite3'
 gem 'devise', '1.2.1'
+gem 'wunderground-api'
 
 group :development, :test do
   gem 'ruby-debug'
