@@ -1,4 +1,4 @@
-class DataRunner < ActiveRecord::Base
+class DataRunner::Base
   
   def self.update
     raise NonImplementedError
