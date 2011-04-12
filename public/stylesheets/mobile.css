@@ -75,7 +75,8 @@ body {
   border-color: rgba(0, 0, 0, 0.6); }
 
 #track .widget .header .button.right {
-  right: 6px; }
+  right: 6px;
+  font-weight: bold; }
 
 #track .widget .header .button.left {
   left: 6px; }
@@ -116,6 +117,15 @@ body {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666666), color-stop(1, #555555));
   float: left;
   margin-top: 3px; }
+
+#track .widget .button.delete {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #994444), color-stop(1, #773333));
+  border-color: #600;
+  margin-top: 3px;
+  font-size: 12px; }
+
+#my_widgets .section h3 {
+  padding: 5px 0; }
 
 #available_widgets {
   float: left;
@@ -178,3 +188,10 @@ body {
   -webkit-border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   text-shadow: 0 -1px -1px rgba(0, 0, 0, 0.5); }
+
+.hidden {
+  display: none; }
+
+/* highly specialized */
+#track .widget .header #settings_edit.pressed {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6666aa), color-stop(1, #4444aa)); }

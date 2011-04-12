@@ -39,6 +39,16 @@ $(document).ready(function(){
     $('#track').animate({marginLeft:-1*320*scrn}, 0);
   }
   
+  // handle "edit" press
+  toggle_time = 220;
+  $('a#settings_edit').toggle(function(){
+    $(this).addClass('pressed');
+    $(this).parent().parent().find('.button.delete').show("slide", {direction: "left", distance: -100}, toggle_time);
+  }, function(){
+    $(this).removeClass('pressed');
+    $(this).parent().parent().find('.button.delete').hide("slide", {direction: "right"}, toggle_time);
+  });
+  
   // Prevent touchmove normally
   $('body').bind("touchmove", function(event){
     event.preventDefault();
