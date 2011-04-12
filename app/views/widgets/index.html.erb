@@ -1,4 +1,12 @@
-Hi <%= current_user.email %>. <br />
-You have <%= @widgets.length %> widget(s).
+<% content_for :head do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      init_track();
+    })
+  </script>
+<% end -%>
 
-<a href="http://localhost:3001/widgets/8/edit">test</a>
+<%= render :partial => 'widgets/settings' %>
+<% @widgets.each do |widget| %>
+  <%= render :partial => widget.class.view, :locals => {:widget => widget} %>
+<% end %>

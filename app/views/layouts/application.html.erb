@@ -16,19 +16,23 @@
 	<body>
 		<div id="container">
 			<div id="track">
-				<div class="widget">
-					
+				<% if params[:controller] == "widgets" && params[:action] == "index" %>
 					<%= yield %>
+				<% else %>
+					<div class="widget">
 					
-				</div>
+						<%= yield %>
+					
+					</div>
+				<% end %>
 			</div>
 			<div id="dots">
 				<% if user_signed_in? %>
 					<% if @widgets %>
-						<span class="settings">&#x2699;</span>
-						<span class="widget selected">&bull;</span>
-						<span class="widget">&bull;</span>
-						<span class="widget">&bull;</span>
+						<a href="#0" class="settings" id="widget-0">&#x2699;</a>
+						<% @widgets.each_with_index do |widget, i| %>
+							<a href="#<%= i+1 %>" class="widget" id="widget-<%= i+1 %>">&bull;</a>
+						<% end %>
 					<% else %>
 					<span class="settings selected">&#x2699;</span>
 					<% end %>

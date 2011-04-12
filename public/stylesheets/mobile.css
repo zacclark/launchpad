@@ -26,6 +26,10 @@ body {
   text-align: center;
   margin-top: -5px; }
 
+#dots a {
+  text-decoration: none;
+  color: #888; }
+
 #dots .selected {
   color: #fff; }
 
@@ -37,7 +41,8 @@ body {
   height: 420px;
   -webkit-border-radius: 5px;
   padding: 5px;
-  color: #fff; }
+  color: #fff;
+  float: left; }
 
 #track .widget ul {
   padding-left: 20px; }
@@ -62,6 +67,36 @@ body {
   color: #5d5;
   margin-left: -3px; }
 
+#track .widget .header .button {
+  position: absolute;
+  top: 6px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666666), color-stop(1, #444444));
+  font-size: 14px;
+  border-color: rgba(0, 0, 0, 0.6); }
+
+#track .widget .header .button.right {
+  right: 6px; }
+
+#track .widget .header .button.left {
+  left: 6px; }
+
+#track .widget .section {
+  width: 290px;
+  margin-left: -5px;
+  padding: 5px;
+  border-bottom: 1px solid #111;
+  float: left;
+  text-shadow: 0 -1px -1px rgba(0, 0, 0, 0.5); }
+
+#track .widget .section.common h3 {
+  float: left;
+  font-size: 16px; }
+
+#track .widget .section.common p {
+  float: right;
+  font-size: 14px;
+  margin-top: 2px; }
+
 #track .widget .footer {
   position: absolute;
   bottom: 0;
@@ -83,8 +118,6 @@ body {
   margin-top: 3px; }
 
 #available_widgets {
-  margin-top: 10px;
-  border-bottom: 1px solid #111;
   float: left;
   margin-left: -5px;
   width: 300px; }
@@ -95,7 +128,7 @@ body {
   background: #222;
   float: left;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #333333), color-stop(1, #282828));
-  border-top: 1px solid #111; }
+  border-bottom: 1px solid #111; }
 
 #available_widgets .available_widget h2 {
   display: block;
@@ -118,6 +151,23 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #44cc44), color-stop(1, #22aa22)); }
 
+/* weather widget */
+#track .widget .high_low {
+  font-size: 60px; }
+
+#track .widget .high_low .high,
+#track .widget .high_low .low {
+  width: 50%;
+  float: left;
+  text-align: center; }
+
+#track .widget .high_low .high {
+  border-right: 1px solid #444; }
+
+#track .widget .high_low .low {
+  margin-left: -1px; }
+
+/* condition icon is 50x50, we're using set "c" */
 /* general */
 .button {
   float: right;

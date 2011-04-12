@@ -3,6 +3,10 @@ class WeatherWidget < Widget
     "Weather"
   end
   
+  def self.view
+    "widgets/weather"
+  end
+  
   def high
     serialized_settings[:high]
   end

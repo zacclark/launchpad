@@ -1,0 +1,13 @@
+<div class="widget settings">
+  <div class="header">
+    <h2>Settings</h2>
+    <%= link_to "Add", new_widget_path, :class => "button right" %>
+  </div>
+  
+  <% @widgets.each do |widget| %>
+    <div class="section common">
+      <h3><%= widget.class.title %></h3>
+      <p><%= button_to "Delete", widget, :method => :delete %></p>
+    </div>
+  <% end %>
+</div>
