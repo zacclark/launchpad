@@ -15,15 +15,28 @@ $(document).ready(function(){
     }
     
     widget = $(this).attr('href').replace("#", "");
+    
+    $.ajax({
+      url: "/api/set_current_screen",
+      method: "POST",
+      data: {screen: widget}
+    });
+    
     $('#track').animate({marginLeft:-1*320*widget}, 500);
     clear_selected();
     $('#widget-' + widget).addClass('selected');
     return false;
   });
   // select widget 1 by default
-  init_track = function(){
-    $('#widget-1').addClass('selected');
-    $('#track').animate({marginLeft:-1*320*1}, 0);
+  init_track = function(current_screen){
+    scrn = 1;
+    
+    if (typeof(current_screen) == "number") {
+      scrn = current_screen;
+    }
+    
+    $('#widget-' + scrn).addClass('selected');
+    $('#track').animate({marginLeft:-1*320*scrn}, 0);
   }
   
   // Prevent touchmove normally

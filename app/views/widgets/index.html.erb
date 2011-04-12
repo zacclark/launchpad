@@ -1,7 +1,7 @@
 <% content_for :head do -%>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-      init_track();
+      init_track(<%= current_user.current_screen %>);
     })
   </script>
 <% end -%>

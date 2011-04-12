@@ -1,7 +1,9 @@
 Launchpad::Application.routes.draw do
+  
   resources :widgets
   devise_for :users
   
+  match 'api/set_current_screen' => 'home#set_current_screen'
   root :to => "home#index"
 
   # The priority is based upon order of creation:
