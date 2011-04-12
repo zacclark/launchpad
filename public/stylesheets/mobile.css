@@ -122,7 +122,12 @@ body {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #994444), color-stop(1, #773333));
   border-color: #600;
   margin-top: 3px;
-  font-size: 12px; }
+  font-size: 12px;
+  -webkit-transition: opacity 0.4s ease; }
+
+#track .widget .button.delete.hidden {
+  display: block;
+  opacity: 0; }
 
 #my_widgets .section h3 {
   padding: 5px 0; }

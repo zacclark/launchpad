@@ -43,10 +43,10 @@ $(document).ready(function(){
   toggle_time = 220;
   $('a#settings_edit').toggle(function(){
     $(this).addClass('pressed');
-    $(this).parent().parent().find('.button.delete').show("slide", {direction: "left", distance: -100}, toggle_time);
+    $(this).parent().parent().find('.button.delete').removeClass('hidden');
   }, function(){
     $(this).removeClass('pressed');
-    $(this).parent().parent().find('.button.delete').hide("slide", {direction: "right"}, toggle_time);
+    $(this).parent().parent().find('.button.delete').addClass('hidden');
   });
   
   // Prevent touchmove normally

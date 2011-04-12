@@ -27,7 +27,8 @@ body 							                                    {background: #000; font-family: 
 #track .widget .footer                                {position: absolute; bottom: 0; width: 290px; margin-left: -5px; padding: 5px; @include gradient(#666, #555); -webkit-border-radius: 0 0 5px 5px; border-top: 1px solid #111;}
 #track .widget .footer.save .button.save              {font-size: 14px; @include gradient(#767676, #666);}
 #track .widget .footer.save .button.cancel            {font-size: 11px; @include gradient(#666, #555); float: left; margin-top: 3px;}
-#track .widget .button.delete                         {@include gradient(#944, #733); border-color: #600; margin-top: 3px; font-size: 12px;}
+#track .widget .button.delete                         {@include gradient(#944, #733); border-color: #600; margin-top: 3px; font-size: 12px; -webkit-transition: opacity 0.4s ease;}
+#track .widget .button.delete.hidden                  {display: block; opacity: 0;}
 #my_widgets .section h3                               {padding: 5px 0;}
 #available_widgets                                    {float: left; margin-left: -5px; width: 300px;}
 #available_widgets .available_widget                  {width: 290px; padding: 5px; background: #222; float: left; @include gradient(#333, #282828); border-bottom: 1px solid #111;}
