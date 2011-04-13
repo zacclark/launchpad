@@ -67,6 +67,7 @@ body {
   color: #5d5;
   margin-left: -3px; }
 
+/*#track .widget .header h2.session                     {text-align: left;}*/
 #track .widget .header .button {
   position: absolute;
   top: 6px;
@@ -75,7 +76,9 @@ body {
   border-color: rgba(0, 0, 0, 0.6); }
 
 #track .widget .header .button.right {
-  right: 6px;
+  right: 6px; }
+
+#track .widget .header .button.right.add {
   font-weight: bold; }
 
 #track .widget .header .button.left {
@@ -193,6 +196,9 @@ body {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #44cc44), color-stop(1, #22aa22)); }
 
 /* weather widget */
+#track .widget {
+  background: -webkit-gradient(radial, center center, 300, center center, 0, from(#222222), to(#3a3a3a), color-stop(0.25, #353535)); }
+
 #track .widget .high_low {
   font-size: 60px; }
 
@@ -226,3 +232,12 @@ body {
 /* highly specialized */
 #track .widget .header #settings_edit.pressed {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6666aa), color-stop(1, #4444aa)); }
+
+#sign_in {
+  width: 200px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666666), color-stop(1, #444444));
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: bold;
+  margin: 5px 45px;
+  clear: both; }

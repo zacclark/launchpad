@@ -12,6 +12,10 @@ class Widget < ActiveRecord::Base
     raise NonImplementedError
   end
   
+  def available_settings
+    []
+  end
+  
   def self.title
     raise NonImplementedError
   end

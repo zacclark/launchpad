@@ -2,7 +2,7 @@
   <div class="header">
     <h2>Widget Settings</h2>
     <%= link_to "Edit", "#", :class => "button left", :id => "settings_edit" %>
-    <%= link_to "✚", new_widget_path, :class => "button right" %>
+    <%= link_to "✚", new_widget_path, :class => "button right add" %>
   </div>
   
   <div id="my_widgets">
@@ -15,5 +15,9 @@
         </div>
       </div>
     <% end %>
+  </div>
+  
+  <div class="footer save">
+    <%= link_to "sign out", destroy_user_session_path, :class => "button cancel" %>
   </div>
 </div>

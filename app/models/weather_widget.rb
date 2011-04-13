@@ -7,11 +7,15 @@ class WeatherWidget < Widget
     "widgets/weather"
   end
   
-  def high
-    serialized_settings[:high]
+  def zip= code
+    serialized_settings[:zip] = code
   end
   
-  def high= tempurature
-    serialized_settings[:high] = tempurature
+  def zip
+    serialized_settings[:zip]
+  end
+  
+  def available_settings
+    [:zip]
   end
 end

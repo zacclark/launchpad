@@ -7,7 +7,11 @@
   <% @widget.available_settings.each do |setting| %>
     <div class="grouping">
       <%= f.label setting %>
-      <%= f.text_field setting %>
+      <% if setting == :password %>
+        <%= f.password_field setting %>
+      <% else %>
+        <%= f.text_field setting %>
+      <% end %>
     </div>
   <% end %>
 
