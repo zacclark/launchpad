@@ -3,6 +3,13 @@
   <div class="header">
     <h2><%= @widget.class.title %> Settings</h2>
   </div>
+  
+  <% @widget.available_settings.each do |setting| %>
+    <div class="grouping">
+      <%= f.label setting %>
+      <%= f.text_field setting %>
+    </div>
+  <% end %>
 
   <div class="footer save">
     <%= link_to "cancel", widgets_path, :class => "cancel button" unless false && @widget.serialized_settings.blank? %>

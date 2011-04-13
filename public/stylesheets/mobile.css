@@ -118,16 +118,42 @@ body {
   float: left;
   margin-top: 3px; }
 
+#track .widget .buttonset {
+  -webkit-transition: opacity 0.4s ease;
+  margin-top: 3px;
+  font-size: 12px; }
+
+#track .widget .buttonset.hidden {
+  display: block;
+  opacity: 0; }
+
+#track .widget .button.edit {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #999999), color-stop(1, #777777));
+  border-right: 0;
+  -webkit-border-radius: 5px 0 0 5px;
+  border-color: #600; }
+
 #track .widget .button.delete {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #994444), color-stop(1, #773333));
   border-color: #600;
-  margin-top: 3px;
-  font-size: 12px;
-  -webkit-transition: opacity 0.4s ease; }
+  -webkit-border-radius: 0 5px 5px 0;
+  padding: 3px 5px;
+  padding-bottom: 4px; }
 
-#track .widget .button.delete.hidden {
-  display: block;
-  opacity: 0; }
+#track .widget form .grouping {
+  width: 290px;
+  float: left;
+  padding: 5px 0; }
+
+#track .widget form .grouping label {
+  float: left;
+  font-size: 16px; }
+
+#track .widget form .grouping input {
+  float: right;
+  font-size: 16px;
+  width: 200px;
+  -webkit-border-radius: 5px; }
 
 #my_widgets .section h3 {
   padding: 5px 0; }

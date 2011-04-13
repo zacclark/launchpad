@@ -9,7 +9,10 @@
     <% @widgets.each do |widget| %>
       <div class="section common">
         <h3><%= widget.class.title %></h3>
-        <p><%= button_to "Delete", widget, :method => :delete, :class => "delete button hidden" %></p>
+        <div class="buttonset hidden">
+          <%= button_to "Delete", widget, :method => :delete, :class => "delete button" %>
+          <%= link_to "Edit Settings", edit_widget_path(widget), :class => "button edit" %>
+        </div>
       </div>
     <% end %>
   </div>

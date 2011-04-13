@@ -43,10 +43,10 @@ $(document).ready(function(){
   toggle_time = 220;
   $('a#settings_edit').toggle(function(){
     $(this).addClass('pressed');
-    $(this).parent().parent().find('.button.delete').removeClass('hidden');
+    $(this).parent().parent().find('#my_widgets .buttonset').removeClass('hidden');
   }, function(){
     $(this).removeClass('pressed');
-    $(this).parent().parent().find('.button.delete').addClass('hidden');
+    $(this).parent().parent().find('#my_widgets .buttonset').addClass('hidden');
   });
   
   // Prevent touchmove normally
