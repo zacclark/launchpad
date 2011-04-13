@@ -51,7 +51,12 @@ $(document).ready(function(){
   
   // if not installed do something
   check_installed = function() {
-    if (window.navigator.standalone) {
+    uagent = navigator.userAgent.toLowerCase();
+    mobile_safari = false;
+    if (uagent.search("iphone") > -1) {
+      mobile_safari = true;
+    }
+    if (window.navigator.standalone || !mobile_safari) {
       // installed
     } else {
       if (window.location.pathname != "/") {
