@@ -15,12 +15,12 @@
     <%= f.password_field :password %>
   </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <p style="width: 200px; float: right"><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+  <div class="grouping checkbox" style="width: 200px; float: right">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+  </div>
 
-  <%= f.submit "Sign in", :class => "button", :id => "sign_in" %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name), :style => "width: 200px; margin: 0 45px; font-size: 12px; float: right; text-align: right; color: #fff; text-decoration: none" %>
-  
-  <%= link_to "No confirmation email?", new_confirmation_path(resource_name), :style => "width: 200px; margin: 0 45px; font-size: 12px; float: right; text-align: right; color: #fff; text-decoration: none" %>
+  <%= f.submit "Sign in", :class => "button main_submit" %>
 <% end %>
+
+<%= render :partial => "devise/shared/links" %>

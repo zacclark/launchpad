@@ -33,9 +33,14 @@ body 							                                    {background: #000; font-family: 
 #track .widget .buttonset.hidden                      {display: block; opacity: 0;}
 #track .widget .button.edit                           {@include gradient(#999, #777); border-right: 0; -webkit-border-radius: 5px 0 0 5px; border-color: #600;}
 #track .widget .button.delete                         {@include gradient(#944, #733); border-color: #600; -webkit-border-radius: 0 5px 5px 0; padding: 3px 5px; padding-bottom: 4px;}
+#track .widget .button.main_submit                    {width: 200px; @include gradient(#666, #444); font-size: 18px; text-transform: capitalize; font-weight: bold; margin: 5px 45px; clear: both;}
 #track .widget form .grouping                         {width: 290px; float: left; padding: 5px 0;}
 #track .widget form .grouping label                   {float: left; font-size: 16px;}
 #track .widget form .grouping input                   {float: right; font-size: 16px; width: 200px; -webkit-border-radius: 5px;}
+#track .widget form .grouping.checkbox input          {width: auto; float: left;}
+#track .widget form .grouping.checkbox label          {float: left; font-size: 14px; margin-left: 5px;}
+#track .widget .session_extra_links                   {width: 200px; margin: 0 45px; float: right; font-size: 12px;}
+#track .widget .session_extra_links a                 {text-align: center; color: #aaa; text-decoration: none; display: block; margin-top: 10px;}
 #my_widgets .section h3                               {padding: 5px 0;}
 #available_widgets                                    {float: left; margin-left: -5px; width: 300px;}
 #available_widgets .available_widget                  {width: 290px; padding: 5px; background: #222; float: left; @include gradient(#333, #282828); border-bottom: 1px solid #111;}
@@ -61,4 +66,5 @@ body 							                                    {background: #000; font-family: 
 /* highly specialized */
 
 #track .widget .header #settings_edit.pressed         {@include gradient(#66a, #44a);}
-#sign_in                                              {width: 200px; @include gradient(#666, #444); font-size: 18px; text-transform: capitalize; font-weight: bold; margin: 5px 45px; clear: both;}
+#sign_in                                              {}
+#devise_edit                                          {height: 335px !important;}

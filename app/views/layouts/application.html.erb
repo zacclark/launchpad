@@ -19,7 +19,7 @@
 				<% if params[:controller] == "widgets" && params[:action] == "index" %>
 					<%= yield %>
 				<% else %>
-					<div class="widget">
+					<div class="widget" id="<%= params[:controller].split("/")[0] %>_<%= params[:action] %>">
 					
 						<%= yield %>
 					

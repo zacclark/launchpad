@@ -49,6 +49,18 @@ $(document).ready(function(){
     $(this).parent().parent().find('#my_widgets .buttonset').addClass('hidden');
   });
   
+  // if not installed do something
+  check_installed = function() {
+    if (window.navigator.standalone) {
+      // installed
+    } else {
+      if (window.location.pathname != "/") {
+        alert('Please return to installed version of the app');
+      }
+    }
+  }
+  check_installed();
+  
   // Prevent touchmove normally
   $('body').bind("touchmove", function(event){
     event.preventDefault();

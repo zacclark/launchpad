@@ -143,6 +143,15 @@ body {
   padding: 3px 5px;
   padding-bottom: 4px; }
 
+#track .widget .button.main_submit {
+  width: 200px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666666), color-stop(1, #444444));
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: bold;
+  margin: 5px 45px;
+  clear: both; }
+
 #track .widget form .grouping {
   width: 290px;
   float: left;
@@ -157,6 +166,28 @@ body {
   font-size: 16px;
   width: 200px;
   -webkit-border-radius: 5px; }
+
+#track .widget form .grouping.checkbox input {
+  width: auto;
+  float: left; }
+
+#track .widget form .grouping.checkbox label {
+  float: left;
+  font-size: 14px;
+  margin-left: 5px; }
+
+#track .widget .session_extra_links {
+  width: 200px;
+  margin: 0 45px;
+  float: right;
+  font-size: 12px; }
+
+#track .widget .session_extra_links a {
+  text-align: center;
+  color: #aaa;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px; }
 
 #my_widgets .section h3 {
   padding: 5px 0; }
@@ -233,11 +264,5 @@ body {
 #track .widget .header #settings_edit.pressed {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6666aa), color-stop(1, #4444aa)); }
 
-#sign_in {
-  width: 200px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #666666), color-stop(1, #444444));
-  font-size: 18px;
-  text-transform: capitalize;
-  font-weight: bold;
-  margin: 5px 45px;
-  clear: both; }
+#devise_edit {
+  height: 335px !important; }
