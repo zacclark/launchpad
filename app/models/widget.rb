@@ -16,6 +16,14 @@ class Widget < ActiveRecord::Base
     []
   end
   
+  def self.data_runner
+    DataRunner::Base
+  end
+  
+  def update_data
+    self.class.data_runner.new(self).update
+  end
+  
   def self.title
     raise NonImplementedError
   end

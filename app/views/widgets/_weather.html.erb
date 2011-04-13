@@ -5,16 +5,17 @@
 
   <div class="section common">
     <h3>Forecast for:</h3>
-    <p>80303</p>
+    <p><%= widget.zip %></p>
   </div>
 
   <div class="high_low section">
-    <div class="high">64&deg;</div>
-    <div class="low">38&deg;</div>
+    <div class="high"><%= widget.today[:high] %>&deg;</div>
+    <div class="low"><%= widget.today[:low] %>&deg;</div>
   </div>
 
   <div class="conditions section common">
+    <img src="<%= widget.today[:icon] %>">
     <h3>Conditions:</h3>
-    <p>Partially Cloudy</p>
+    <p><%= widget.today[:conditions] %></p>
   </div>
 </div>

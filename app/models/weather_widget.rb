@@ -1,10 +1,16 @@
 class WeatherWidget < Widget
+  DR = DataRunner::Weather
+  
   def self.title
     "Weather"
   end
   
   def self.view
     "widgets/weather"
+  end
+  
+  def self.data_runner
+    DataRunner::Weather
   end
   
   def zip= code
@@ -28,6 +34,8 @@ class WeatherWidget < Widget
     serialized_current_data[:forecast] = data
   end
   
+  def today
+    forecast[0]
+  end
+  
 end
-
-class TypeMismatchError < StandardError; end
