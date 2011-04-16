@@ -18,4 +18,25 @@
     <h3>Conditions:</h3>
     <p><%= widget.today[:conditions] %></p>
   </div>
+  
+  <style type="text/css" media="screen">
+    .day          {float: left; width: 100px; border-right: 1px dotted #111; height: 195px; margin-left: -1px;}
+    .day.first    {margin-left: 0;}
+    .day.last     {border-right: 0;}
+    .day img      {background: #fff; display: block; float: left; -webkit-border-radius: 5px; height: 50px; width: 50px; margin: 15px 25px;}
+    .day h4       {width: 100%; text-align: center; margin-top: 15px; font-weight: normal;}
+    .day .high    {width: 100%; text-align: center; font-size: 26px;}
+    .day .low     {width: 100%; text-align: center; font-size: 16px; color: #999;}
+  </style>
+  
+  <div style="width: 300px; margin-left: -5px; height: 200px; float: left; -webkit-border-radius: 0 0 5px 5px">
+  <% widget.rest_of_week.each_with_index do |day, i| %>
+    <div class="day <%= "last" if i == 2 %> <%= "first" if i == 0 %>">
+      <h4><%= day[:weekday] %></h4>
+      <img src="<%= day[:icon] %>">
+      <div class="high"><%= day[:high] %>&deg;</div>
+      <div class="low"><%= day[:low] %>&deg;</div>
+    </div>
+  <% end %>
+  </div>
 </div>

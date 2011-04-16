@@ -245,6 +245,9 @@ body {
 #track .widget .high_low .low {
   margin-left: -1px; }
 
+#track .widget .conditions {
+  padding: 15px inherit; }
+
 #track .widget .conditions h3 {
   float: none !important;
   margin-top: 4px; }

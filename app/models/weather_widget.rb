@@ -38,4 +38,9 @@ class WeatherWidget < Widget
     forecast[0]
   end
   
+  def rest_of_week
+    forecast.shift
+    forecast
+  end
+  
 end
