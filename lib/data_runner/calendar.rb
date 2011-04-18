@@ -1,7 +1,7 @@
 class DataRunner::Calendar < DataRunner::Base
   
   def update
-    calendars = get_calendars(@widget.access_token)
+    calendars = get_calendars()
     save_event_data(calendars, @widget.access_token)
   end
   
@@ -23,9 +23,9 @@ class DataRunner::Calendar < DataRunner::Base
     [CalWidget]
   end
   
-  def get_calendars(access_token)
+  def get_calendars()
     begin
-      calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{access_token}"
+      calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{@widget.access_token}"
     rescue RestClient::Unauthorized
       grant_token_from_refresh_token(@widget.refresh_token)
       retry
