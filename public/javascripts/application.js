@@ -9,22 +9,28 @@ $(document).ready(function(){
     return false;
   });
   
-  $('#dots a').click(function(){
-    clear_selected = function(){
-      $('#dots a.selected').removeClass('selected');
-    }
-    
-    widget = $(this).attr('href').replace("#", "");
-    
+  clear_selected = function(){
+    $('#dots a.selected').removeClass('selected');
+  }
+  
+  set_current_screen = function(screen) {
     $.ajax({
       url: "/api/set_current_screen",
       method: "POST",
-      data: {screen: widget}
+      data: {screen: screen}
     });
+    window.scrn = screen;
+    clear_selected();
+    $('#widget-' + screen).addClass('selected');
+  }
+  
+  $('#dots a').click(function(){
+    
+    widget = $(this).attr('href').replace("#", "");
+    
+    set_current_screen(widget)
     
     $('#track').animate({marginLeft:-1*320*widget}, 500);
-    clear_selected();
-    $('#widget-' + widget).addClass('selected');
     return false;
   });
   // select widget 1 by default
@@ -33,6 +39,7 @@ $(document).ready(function(){
     
     if (typeof(current_screen) == "number") {
       scrn = current_screen;
+      window.scrn = current_screen;
     }
     
     $('#widget-' + scrn).addClass('selected');
@@ -67,8 +74,8 @@ $(document).ready(function(){
   check_installed();
   
   // Prevent touchmove normally
-  $('body').bind("touchmove", function(event){
-    event.preventDefault();
-  });
+  // $('body').bind("touchmove", function(event){
+  //     event.preventDefault();
+  //   });
   
 });
