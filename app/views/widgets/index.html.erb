@@ -1,8 +1,45 @@
 <% content_for :head do -%>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
+      ignore_prevent_default = true;
+      
       init_track(<%= current_user.current_screen %>);
-    })
+      
+      var box = document.getElementById('track');
+      box.addEventListener("touchstart", sbox, true);
+      box.addEventListener("touchmove", mbox, true);
+      box.addEventListener("touchend", ebox, true);
+      
+      var bstart;
+      var choice = window.scrn;
+      var locs = 0;
+      function sbox(e) {
+        document.getElementById('track').style.webkitTransition = "none";
+        bstart = e.targetTouches[0].clientX;
+        choice = window.scrn;
+      }
+      function mbox(e) {
+        e.preventDefault();
+        newx = e.targetTouches[0].clientX;
+        change = newx - bstart;
+        document.getElementById('track').style.marginLeft = (-1*320*choice + change) + "px";
+        
+        locs = change;
+      }
+      function ebox(e) {
+        if (locs < -100) {
+          choice++;
+          if (choice > <%= @widgets.length %>) choice = <%= @widgets.length %>;
+        }
+        if (locs > 100) {
+          choice--;
+          if (choice < 0) choice = 0;
+        }
+        set_current_screen(choice);
+        document.getElementById('track').style.webkitTransition = "margin-left 0.5s";
+        document.getElementById('track').style.marginLeft = (-320*choice) + "px";
+      }
+    });
   </script>
 <% end -%>
 
