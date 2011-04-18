@@ -73,9 +73,11 @@ $(document).ready(function(){
   }
   check_installed();
   
-  // Prevent touchmove normally
-  // $('body').bind("touchmove", function(event){
-  //     event.preventDefault();
-  //   });
+  //Prevent touchmove normally
+  if (typeof(ignore_prevent_default) == "undefined") {
+    $('body').bind("touchmove", function(event){
+      event.preventDefault();
+    });
+  }
   
 });
