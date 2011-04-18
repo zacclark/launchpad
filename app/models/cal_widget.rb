@@ -15,6 +15,11 @@ class CalWidget < Widget
     serialized_settings[:access_code]
   end
   
+  before_save :grand_token_from_auth_code
+  def grand_token_from_auth_code
+    
+  end
+  
   def access_token= token
     serialized_settings[:access_token] = token
   end
@@ -50,7 +55,11 @@ class CalWidget < Widget
   end
   
   def available_settings
-    [:access_code, :access_token, :refresh_token]
+    []
+  end
+  
+  def special_settings
+    true
   end
 end
 

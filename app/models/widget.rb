@@ -16,6 +16,10 @@ class Widget < ActiveRecord::Base
     []
   end
   
+  def special_settings
+    false
+  end
+  
   def self.data_runner
     DataRunner::Base
   end

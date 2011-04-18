@@ -12,4 +12,14 @@ class HomeController < ApplicationController
       render :text => "false"
     end
   end
+  
+  def return_from_google
+    @widget = Widget.find( params[:state].gsub( "widget-", "" ).to_i )
+    @widget.access_code = params[:code]
+    if @widget.save
+      redirect_to widgets_path
+    else
+      redirect_to edit_widget_path(@widget)
+    end
+  end
 end

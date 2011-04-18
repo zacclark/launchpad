@@ -4,6 +4,7 @@ Launchpad::Application.routes.draw do
   devise_for :users
   
   match 'api/set_current_screen' => 'home#set_current_screen'
+  match 'api/return_from_google' => 'home#return_from_google'
   root :to => "home#index"
 
   # The priority is based upon order of creation:
