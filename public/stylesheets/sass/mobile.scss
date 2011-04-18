@@ -60,6 +60,10 @@ body 							                                    {background: #000; font-family: 
 #track .widget .conditions img                        {background: #fff; display: block; float: left; margin-right: 7px; margin-left: 60px; -webkit-border-radius: 5px; height: 50px; width: 50px;}
 #track .widget .conditions p                          {float: none !important;}
 
+/* cal widget                                         */
+
+.google_auth .button                                  {float: none; width: 240px; margin: 20px auto; text-align: center; @include gradient(#555, #363636); padding: 10px 0;}
+
 /* condition icon is 50x50, we're using set "c" */
 
 /* general */
