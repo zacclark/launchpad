@@ -41,6 +41,7 @@ GEM
       abstract (>= 1.0.0)
     haml (3.0.25)
     i18n (0.5.0)
+    json (1.5.1)
     linecache (0.43)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -69,6 +70,8 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
     ruby-debug (0.10.4)
       columnize (>= 0.1)
       ruby-debug-base (~> 0.10.4.0)
@@ -92,7 +95,9 @@ PLATFORMS
 DEPENDENCIES
   devise (= 1.2.1)
   haml
+  json
   rails (= 3.0.5)
+  rest-client
   ruby-debug
   sqlite3
   wunderground-api

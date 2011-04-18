@@ -1,24 +1,27 @@
 class DataRunner::Calendar < DataRunner::Base
   
   def update
-    #updating logic goes here
     calendars = get_calendars(@widget.access_token)
-    #TODO: error checking - did calendars return anything?
     save_event_data(calendars, @widget.access_token)
   end
+  
+  
+  def initialize(widget)
+    super(widget)
+    @google_path   = 'https://accounts.google.com/o/oauth2/token'
+    @client_id     = '73940937617.apps.googleusercontent.com'
+    @client_secret = 'ANX1uCUyFeMDMop7Ts6Zc11P'
+    @redirect_url  = 'http://localhost:3001/api/return_from_google'
+    @google_cal_path = 'https://www.google.com/calendar/feeds/default/owncalendars/full'
+  end
+  
+  attr_reader :google_path, :client_id, :client_secret, :redirect_url, :google_cal_path
   
   private
   
   def self.possible_widgets
-    [CalendarWidget]
+    [CalWidget]
   end
-  
-  @google_path   = 'https://accounts.google.com/o/oauth2/token'
-  @client_id     = '73940937617.apps.googleusercontent.com'
-  @client_secret = 'ANX1uCUyFeMDMop7Ts6Zc11P'
-  @redirect_url  = 'http://zacclark.com/launchpad/back'
-
-  @google_cal_path = 'https://www.google.com/calendar/feeds/default/owncalendars/full'
   
   def get_calendars(access_token)
     calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{access_token}"
@@ -60,55 +63,56 @@ class DataRunner::Calendar < DataRunner::Base
     
   end
   
-  def save_event_data(cal, access_token)
-    path = 'https://www.google.com' + cal[:path] + "?oauth_token=#{access_token}"
-
-    #calculate time-zone offset for path request
-    offset = Time.now.in_time_zone(cal[:timezone]).to_s
-    offset = '-' + offset.split('-')[3]
-    offset = offset.insert 3, ':'
-
-    today = Time.new
-    path += "&start-min=#{today.strftime("%Y-%m-%d")}T01:00:00#{offset}"
-    path += "&start-max=#{today.strftime("%Y-%m-%d")}T23:59:59#{offset}"
-    path += "&singleevents=true"
-    path += "&orderby=starttime"
-    path += "&sortorder=a"
-
-    #TODO: error checking
-    data = RestClient.get path
-    
+  def save_event_data(calendars, access_token)
     all_day = []
     timed = []
+    
+    calendars.each do |cal|
+      path = 'https://www.google.com' + cal[:path] + "?oauth_token=#{access_token}"
 
-    doc = REXML::Document.new data
+      #calculate time-zone offset for path request
+      offset = Time.now.in_time_zone(cal[:timezone]).to_s
+      offset = '-' + offset.split('-')[3]
+      offset = offset.insert 3, ':'
 
-    doc.elements.each("*/entry") do |elem|
-      name = elem.elements["title"].text.to_s
-      start_time = elem.elements["gd:when"].attributes["startTime"].to_s
-      fullday = false
-      if start_time.length == 10
-        fullday = true
-      end
+      today = Time.new
+      path += "&start-min=#{today.strftime("%Y-%m-%d")}T01:00:00#{offset}"
+      path += "&start-max=#{today.strftime("%Y-%m-%d")}T23:59:59#{offset}"
+      path += "&singleevents=true"
+      path += "&orderby=starttime"
+      path += "&sortorder=a"
 
-      start_time = DateTime.parse(start_time)
-      end_time = DateTime.parse(elem.elements["gd:when"].attributes["endTime"].to_s)
+      data = RestClient.get path
+    
+      if data.code == 200
+        doc = REXML::Document.new data
 
-      if fullday
-        all_day << {:title => name}
-      else
-        timed << {
-          :title => name,
-          :start_time => start_time,
-          :end_time => end_time
-        }
+        doc.elements.each("*/entry") do |elem|
+          name = elem.elements["title"].text.to_s
+          start_time = elem.elements["gd:when"].attributes["startTime"].to_s
+          fullday = false
+          if start_time.length == 10
+            fullday = true
+          end
+
+          start_time = DateTime.parse(start_time)
+          end_time = DateTime.parse(elem.elements["gd:when"].attributes["endTime"].to_s)
+
+          if fullday
+            all_day << {:title => name}
+          else
+            timed << {
+              :title => name,
+              :start_time => start_time,
+              :end_time => end_time
+            }
+          end
+        end
       end
     end
-    
     @widget.timed_events = timed
     @widget.all_day_events = all_day
     @widget.save
-    
   end
 end
 

@@ -5,6 +5,8 @@ gem 'sqlite3'
 gem 'devise', '1.2.1'
 gem 'haml'
 gem 'wunderground-api'
+gem 'rest-client'
+gem 'json'
 
 group :development, :test do
   gem 'ruby-debug'

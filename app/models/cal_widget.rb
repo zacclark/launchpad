@@ -7,6 +7,10 @@ class CalWidget < Widget
     "widgets/calendar"
   end
   
+  def self.data_runner
+    DataRunner::Calendar
+  end
+  
   def access_code= code
     serialized_settings[:access_code] = code
   end
@@ -15,9 +19,26 @@ class CalWidget < Widget
     serialized_settings[:access_code]
   end
   
-  before_save :grand_token_from_auth_code
-  def grand_token_from_auth_code
-    
+  before_save :grant_token_from_auth_code
+  def grant_token_from_auth_code
+    return unless self.access_code
+    return if self.access_token
+    runner = self.class.data_runner.new(self)
+    data =  RestClient.post runner.google_path,
+    	        :code => self.access_code,
+    	        :client_id => runner.client_id,
+    	        :client_secret => runner.client_secret,
+    	        :redirect_uri => runner.redirect_url,
+    	        :grant_type => 'authorization_code'
+
+    if data.code == 200
+      parsed = JSON.parse(data)
+
+      self.access_token = parsed['access_token']
+      self.refresh_token = parsed['refresh_token']
+    else
+      return false
+    end
   end
   
   def access_token= token
