@@ -265,6 +265,15 @@ body {
 #track .widget .conditions p {
   float: none !important; }
 
+/* cal widget                                         */
+.google_auth .button {
+  float: none;
+  width: 240px;
+  margin: 20px auto;
+  text-align: center;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555555), color-stop(1, #363636));
+  padding: 10px 0; }
+
 /* condition icon is 50x50, we're using set "c" */
 /* general */
 .button {
