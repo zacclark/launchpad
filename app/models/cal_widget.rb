@@ -36,6 +36,7 @@ class CalWidget < Widget
 
       self.access_token = parsed['access_token']
       self.refresh_token = parsed['refresh_token']
+      self.save
     else
       return false
     end

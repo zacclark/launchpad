@@ -25,7 +25,8 @@ class DataRunner::Calendar < DataRunner::Base
   
   def get_calendars()
     begin
-      calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{@widget.access_token}"
+      access_token = @widget.access_token
+      calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{access_token}"
     rescue RestClient::Unauthorized
       grant_token_from_refresh_token(@widget.refresh_token)
       retry
@@ -48,7 +49,7 @@ class DataRunner::Calendar < DataRunner::Base
   
   # call this to grant a new access_token when a 401 is
   # given from a previous access code
-  def grant_token_from_refresh_token(refresh_token)    
+  def grant_token_from_refresh_token(refresh_token)  
     data = RestClient.post @google_path,
               :client_id => @client_id,
               :client_secret => @client_secret,
