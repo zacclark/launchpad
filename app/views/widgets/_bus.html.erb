@@ -2,6 +2,11 @@
   <div class="header">
     <h2><%= widget.class.title %></h2>
   </div>
+  
+  <div class="section common">
+    <h3>Stop:</h3>
+    <p><%= widget.stop_name %></p>
+  </div>
 
   <div class="stop_overflow">
     <% widget.stop_times.each do |stop| %>

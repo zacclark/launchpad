@@ -33,6 +33,12 @@ class BusWidget < Widget
     []
   end
   
+  def stop_name
+    serialized_current_data[:stop_info][1]
+  rescue NoMethodError
+    ""
+  end
+  
   def after_settings_update_action
     # stops save from calling update, because it is hella slow
   end

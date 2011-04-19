@@ -19,6 +19,7 @@ class DataRunner::Bus < DataRunner::Base
       trips = get_trips(line)
       stop_times = get_stop_times(stop_info, trips)
       @widget.serialized_current_data[:stop_times_raw] = stop_times
+      @widget.serialized_current_data[:stop_info] = stop_info
       @widget.serialized_current_data[:saved_stop_id] = stop
       @widget.serialized_current_data[:saved_line] = line
       @widget.save
