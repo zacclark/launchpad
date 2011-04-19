@@ -1,7 +1,24 @@
-<div class="widget bus">
+<div class="widget calendar">
   <div class="header">
     <h2><%= widget.class.title %></h2>
   </div>
 
+	<style>
+	    .all_day_events               			 {padding: 2.5% 0; border-bottom: 1px solid; position: relative;}
+	    .all_day_events li                   {width: 95%; border: 1px solid; -webkit-border-radius: 5px; position: relative; margin: 2.5%; margin-top: 5px; margin-bottom: 0; list-style: none;}
+	    .all_day_events li .wrap             {padding: 3px; display: block;}
+	    .all_day_events li .cal              {position: absolute; right: 0; padding: 3px; -webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px; top: 0; border-left: 1px solid;}
+			#track .widget ul.all_day_events 		 {padding-left: 0px;}
+	</style>
+
+	<ul class="all_day_events">
+		<% widget.all_day_events.each do |event| %>
+			<li>
+				<span class="wrap">
+					<%= event[:title] %>
+				</span>
+			</li>
+		<% end %>
+	</ul>
   
 </div>
