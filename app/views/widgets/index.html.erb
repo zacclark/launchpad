@@ -22,7 +22,7 @@
         e.preventDefault();
         newx = e.targetTouches[0].clientX;
         change = newx - bstart;
-        document.getElementById('track').style.marginLeft = (-1*320*choice + change) + "px";
+        document.getElementById('track').style.left = (-1*320*choice + change) + "px";
         
         locs = change;
       }
@@ -36,8 +36,8 @@
           if (choice < 0) choice = 0;
         }
         set_current_screen(choice);
-        document.getElementById('track').style.webkitTransition = "margin-left 0.5s";
-        document.getElementById('track').style.marginLeft = (-320*choice) + "px";
+        document.getElementById('track').style.webkitTransition = "left 0.5s";
+        document.getElementById('track').style.left = (-320*choice) + "px";
       }
     });
   </script>

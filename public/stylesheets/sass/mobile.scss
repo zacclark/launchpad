@@ -9,7 +9,7 @@
 * 								                                    {margin: 0; padding: 0;}
 body 							                                    {background: #000; font-family: "Helvetica Neue", "Helvetica";}
 #container				                                    {width: 320px; overflow: hidden; float: left; height: 460px;}
-#track						                                    {width: 6000px; height: 430px; padding-top: 5px; padding-bottom: 5px;}
+#track						                                    {width: 6000px; height: 430px; padding-top: 5px; padding-bottom: 5px; position: relative; left: 0;}
 #dots							                                    {height: 20px; width: 320px; font-size: 20px; color: #888; text-align: center; margin-top: -5px;}
 #dots a                                               {text-decoration: none; color: #888;}
 #dots .selected                                       {color: #fff;}       

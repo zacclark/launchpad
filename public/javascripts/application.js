@@ -30,7 +30,7 @@ $(document).ready(function(){
     
     set_current_screen(widget)
     
-    $('#track').animate({marginLeft:-1*320*widget}, 500);
+    $('#track').animate({left:-1*320*widget}, 500);
     return false;
   });
   // select widget 1 by default
@@ -43,7 +43,7 @@ $(document).ready(function(){
     }
     
     $('#widget-' + scrn).addClass('selected');
-    $('#track').animate({marginLeft:-1*320*scrn}, 0);
+    $('#track').animate({left:-1*320*scrn}, 0);
   }
   
   // handle "edit" press

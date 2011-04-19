@@ -16,7 +16,9 @@ body {
   width: 6000px;
   height: 430px;
   padding-top: 5px;
-  padding-bottom: 5px; }
+  padding-bottom: 5px;
+  position: relative;
+  left: 0; }
 
 #dots {
   height: 20px;
