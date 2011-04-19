@@ -1,24 +1,31 @@
+<% content_for :head do -%>
+<style>
+  .events_hold                         {width: 300px; margin-left: -5px; float: left; height: 392px; overflow: hidden;}
+  .all_day_events               			 {padding: 0; border-bottom: 1px solid; position: relative; border-bottom-color: #2a2a2a; background: #3f3f3f; width: 300px; float: left;}
+  .all_day_events li                   {width: 95%; border: 1px solid; -webkit-border-radius: 5px; position: relative; margin: 2.5%; margin-top: 5px; margin-bottom: 5px; list-style: none; background: -webkit-gradient(linear, left top, left bottom, from(#4f4f4f), to(#3f3f3f)); -webkit-box-shadow: #222 0px 0px 2px; border-color: #222;}
+  .all_day_events li .wrap             {padding: 3px; display: block; color: #D3D3D3; padding-left: 5px;}
+  .all_day_events li .cal              {position: absolute; right: 0; padding: 3px; -webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px; top: 0; border-left: 1px solid;}
+	#track .widget ul.all_day_events 		 {padding-left: 0px;}
+</style>
+<% end -%>
+
 <div class="widget calendar">
   <div class="header">
     <h2><%= widget.class.title %></h2>
   </div>
 
-	<style>
-	    .all_day_events               			 {padding: 2.5% 0; border-bottom: 1px solid; position: relative; border-bottom-color: #2a2a2a; background: #3f3f3f;}
-	    .all_day_events li                   {width: 95%; border: 1px solid; -webkit-border-radius: 5px; position: relative; margin: 2.5%; margin-top: 5px; margin-bottom: 0; list-style: none; background: -webkit-gradient(linear, left top, left bottom, from(#4f4f4f), to(#3f3f3f)); -webkit-box-shadow: #222 0px 0px 2px; border-color: #222;}
-	    .all_day_events li .wrap             {padding: 3px; display: block; color: #D3D3D3; padding-left: 5px;}
-	    .all_day_events li .cal              {position: absolute; right: 0; padding: 3px; -webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px; top: 0; border-left: 1px solid;}
-			#track .widget ul.all_day_events 		 {padding-left: 0px;}
-	</style>
-
-	<ul class="all_day_events">
-		<% widget.all_day_events.each do |event| %>
-			<li>
-				<span class="wrap">
-					<%= event[:title] %>
-				</span>
-			</li>
-		<% end %>
-	</ul>
+  <div class="events_hold">
+    
+  	<ul class="all_day_events">
+  		<% widget.all_day_events.each do |event| %>
+  			<li>
+  				<span class="wrap">
+  					<%= event[:title] %>
+  				</span>
+  			</li>
+  		<% end %>
+  	</ul>
+  	
+  </div>
   
 </div>

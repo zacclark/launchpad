@@ -58,7 +58,7 @@ class CalWidget < Widget
   end
   
   def timed_events
-    serialized_current_data[:timed_events] #[{:title, :start_time, :end_time}]
+    serialized_current_data[:timed_events] || [] #[{:title, :start_time, :end_time}]
   end
   
   def timed_events= data
@@ -67,7 +67,7 @@ class CalWidget < Widget
   end
   
   def all_day_events
-    serialized_current_data[:all_day_events] #[{:title}]
+    serialized_current_data[:all_day_events] || [] #[{:title}]
   end
   
   def all_day_events= data
