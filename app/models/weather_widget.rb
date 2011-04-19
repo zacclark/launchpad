@@ -35,12 +35,20 @@ class WeatherWidget < Widget
   end
   
   def today
-    forecast[0] || Hash.new
+    if forecast
+      forecast[0]
+    else
+      Hash.new
+    end
   end
   
   def rest_of_week
-    forecast.shift
-    forecast || [Hash.new]
+    if forecast
+      forecast.shift
+      forecast
+    else
+      [{},{},{}]
+    end
   end
   
 end
