@@ -32,6 +32,10 @@ class Widget < ActiveRecord::Base
     raise NonImplementedError
   end
   
+  def after_settings_update_action
+    update_data
+  end
+  
   private
   
   @child_widgets = []

@@ -34,7 +34,7 @@ class WidgetsController < ApplicationController
   def update
     @widget = Widget.find(params[:id])
     if @widget.update_attributes(params[:widget])
-      @widget.update_data
+      @widget.after_settings_update_action
       redirect_to widgets_path
     else
       redirect_to edit_widget_path(@widget)
