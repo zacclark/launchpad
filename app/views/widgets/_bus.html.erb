@@ -6,6 +6,7 @@
   </style>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
+      // scrolling
       $('.stop_overflow').each(function(){
         var me = $(this);
         var list_location = 0;
@@ -34,6 +35,49 @@
           }
         });
       });
+      
+      // handle timing here
+      var stops = [];
+      $('.stop_times .section').each(function(){
+        var element = $(this);
+        var time_string = element.text();
+        var time_array = time_string.split(":");
+        var time = new Date();
+        time.setHours( time_array[0] );
+        time.setMinutes( time_array[1] );
+        time.setSeconds( time_array[2] );
+        stops.push({
+          element: element,
+          stop_time: time
+        });
+      });
+      
+      var timeout_for_parse = 10e3;
+      parse_stops = function() {
+        now = new Date();
+        $.each(stops, function(){
+          if (now > this.stop_time) {
+            this.element.remove();
+          } else {
+            var time_until = parseInt( ((this.stop_time - now)/1000)/60 );
+            var time_until_hours = 0;
+            
+            while (time_until > 60) {
+              time_until_hours++;
+              time_until -= 60;
+            }
+            var text = "";
+            if (time_until_hours == 0) {
+              text = time_until + " minute(s)";
+            } else {
+              text = time_until_hours + "hour(s), " + time_until + " minute(s)"
+            }
+            this.element.text(text);
+          }
+        });
+        setTimeout("parse_stops()", timeout_for_parse);
+      }
+      parse_stops();
     });
   </script>
 <% end -%>
@@ -45,10 +89,10 @@
   
   <div class="section common">
     <h3>Stop:</h3>
-    <p><%= widget.stop_name %> <span id="woo"></span></p>
+    <p><%= widget.stop_name %></p>
   </div>
 
-  <div class="stop_overflow" id="testing">
+  <div class="stop_overflow">
     <div class="stop_times">
       <% widget.stop_times.each do |stop| %>
         <div class="section"><%= stop %></div>
