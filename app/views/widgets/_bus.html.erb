@@ -14,6 +14,7 @@
         $(me).bind({
           touchstart: function(event){
             swipe_start = event.originalEvent.targetTouches[0].clientY;
+            window.doing_vert_scroll = true;
           },
           touchmove: function(event){
             event.preventDefault();
@@ -29,6 +30,7 @@
             } else {
               list_location = 0;
             }
+            window.doing_vert_scroll = false;
           }
         });
       });

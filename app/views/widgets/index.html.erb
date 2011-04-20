@@ -19,25 +19,29 @@
         choice = window.scrn;
       }
       function mbox(e) {
-        e.preventDefault();
-        newx = e.targetTouches[0].clientX;
-        change = newx - bstart;
-        document.getElementById('track').style.left = (-1*320*choice + change) + "px";
+        if (!window.doing_vert_scroll) {
+          e.preventDefault();
+          newx = e.targetTouches[0].clientX;
+          change = newx - bstart;
+          document.getElementById('track').style.left = (-1*320*choice + change) + "px";
         
-        locs = change;
+          locs = change;
+        }
       }
       function ebox(e) {
-        if (locs < -100) {
-          choice++;
-          if (choice > <%= @widgets.length %>) choice = <%= @widgets.length %>;
+        if (!window.doing_vert_scroll) {
+          if (locs < -100) {
+            choice++;
+            if (choice > <%= @widgets.length %>) choice = <%= @widgets.length %>;
+          }
+          if (locs > 100) {
+            choice--;
+            if (choice < 0) choice = 0;
+          }
+          set_current_screen(choice);
+          document.getElementById('track').style.webkitTransition = "left 0.5s";
+          document.getElementById('track').style.left = (-320*choice) + "px";
         }
-        if (locs > 100) {
-          choice--;
-          if (choice < 0) choice = 0;
-        }
-        set_current_screen(choice);
-        document.getElementById('track').style.webkitTransition = "left 0.5s";
-        document.getElementById('track').style.left = (-320*choice) + "px";
       }
     });
   </script>
