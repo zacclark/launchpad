@@ -21,8 +21,8 @@ class CalWidget < Widget
   
   before_save :grant_token_from_auth_code
   def grant_token_from_auth_code
-    return unless self.access_code
-    return if self.access_token
+    return unless self.access_code and self.refresh_token == nil
+    return if self.access_token and self.refresh_token != nil
     runner = self.class.data_runner.new(self)
     data =  RestClient.post runner.google_path,
     	        :code => self.access_code,
@@ -36,6 +36,7 @@ class CalWidget < Widget
 
       self.access_token = parsed['access_token']
       self.refresh_token = parsed['refresh_token']
+      self.needs_to_reauth = false
       self.save
     else
       return false
@@ -64,7 +65,22 @@ class CalWidget < Widget
   
   def timed_events= data
     raise TypeMismatchError unless data.class == Array
+    
+    # calculations for positioning the event on the calendar
+    data.each do |entry|
+      entry[:top_position] = 
+      entry[:height]
+    end
+    
     serialized_current_data[:timed_events] = data 
+  end
+  
+  def needs_to_reauth= bool
+    serialized_current_data[:needs_to_reauth] = bool
+  end
+  
+  def needs_to_reauth
+    serialized_current_data[:needs_to_reauth]
   end
   
   def all_day_events

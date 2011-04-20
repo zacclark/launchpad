@@ -2,7 +2,12 @@ class DataRunner::Calendar < DataRunner::Base
   
   def update
     calendars = get_calendars()
-    save_event_data(calendars, @widget.access_token)
+    
+    #if calendars returned an array, we either have calendars
+    #to get info about; otherwise we need to reauth with Google
+    if (calendars)
+      save_event_data(calendars, @widget.access_token)
+    end
   end
   
   
@@ -28,10 +33,16 @@ class DataRunner::Calendar < DataRunner::Base
       access_token = @widget.access_token
       calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{access_token}"
     rescue RestClient::Unauthorized
-      grant_token_from_refresh_token(@widget.refresh_token)
-      retry
+      if @widget.refresh_token != nil
+        grant_token_from_refresh_token(@widget.refresh_token)
+        retry
+      else
+        @widget.needs_to_reauth = true
+        @widget.save
+        return
+      end
     end
-    
+
     if calendar_data.code == 200
       doc = REXML::Document.new calendar_data
 
@@ -49,7 +60,8 @@ class DataRunner::Calendar < DataRunner::Base
   
   # call this to grant a new access_token when a 401 is
   # given from a previous access code
-  def grant_token_from_refresh_token(refresh_token)  
+  def grant_token_from_refresh_token(refresh_token)
+    return unless refresh_token != nil  
     data = RestClient.post @google_path,
               :client_id => @client_id,
               :client_secret => @client_secret,
