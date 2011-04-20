@@ -68,8 +68,12 @@ class CalWidget < Widget
     
     # calculations for positioning the event on the calendar
     data.each do |entry|
-      entry[:top_position] = 
-      entry[:height]
+      start_time = entry[:start_time]
+      end_time = entry[:end_time]
+      
+      entry[:top_position] = (start_time.hour * 120) + (start_time.min * 2)
+      entry[:height] = ((end_time.hour - start_time.hour) * 120) + ((end_time.min - start_time.min) * 2)
+      
     end
     
     serialized_current_data[:timed_events] = data 
