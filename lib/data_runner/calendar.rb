@@ -30,9 +30,13 @@ class DataRunner::Calendar < DataRunner::Base
   
   def get_calendars()
     begin
+      # don't even try if we know we need to reauth with Google
+      if @widget.needs_to_reauth
+        return
+      end
       access_token = @widget.access_token
       calendar_data = RestClient.get @google_cal_path + "?oauth_token=#{access_token}"
-    rescue RestClient::Unauthorized
+    rescue RestClient::Unauthorized #401 means we need to grant from refresh_token (if it exists)
       if @widget.refresh_token != nil
         grant_token_from_refresh_token(@widget.refresh_token)
         retry
@@ -62,11 +66,17 @@ class DataRunner::Calendar < DataRunner::Base
   # given from a previous access code
   def grant_token_from_refresh_token(refresh_token)
     return unless refresh_token != nil  
-    data = RestClient.post @google_path,
-              :client_id => @client_id,
-              :client_secret => @client_secret,
-              :refresh_token => refresh_token,
-              :grant_type => 'refresh_token'
+    begin
+      data = RestClient.post @google_path,
+                :client_id => @client_id,
+                :client_secret => @client_secret,
+                :refresh_token => refresh_token,
+                :grant_type => 'refresh_token'
+    rescue RestClient::BadRequest
+      @widget.needs_to_reauth = true
+      @widget.save
+      return
+    end
     
     parsed = JSON.parse(data)
     
