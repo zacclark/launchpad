@@ -70,9 +70,13 @@ class CalWidget < Widget
     data.each do |entry|
       start_time = entry[:start_time]
       end_time = entry[:end_time]
+      end_time_hour = entry[:end_time].hour
       
       entry[:top_position] = (start_time.hour * 120) + (start_time.min * 2)
-      entry[:height] = ((end_time.hour - start_time.hour) * 120) + ((end_time.min - start_time.min) * 2)
+      if ((end_time_hour - start_time.hour) < 0)
+        end_time_hour += 24
+      end
+        entry[:height] = ((end_time_hour - start_time.hour) * 120) + ((end_time.min - start_time.min) * 2)
       
     end
     
