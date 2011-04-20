@@ -1,7 +1,81 @@
-<div class="widget bus">
+<% content_for :head do -%>
+<style>
+  .events_hold                         {width: 300px; margin-left: -5px; float: left; height: 392px; position: relative; overflow: hidden; overflow-y: scroll; overflow-x: hidden;}
+  .all_day_events               			 {padding: 0; border-bottom: 1px solid; position: relative; border-bottom-color: #2a2a2a; background: #3f3f3f; width: 300px; float: left; z-index: 20 !important}
+  .all_day_events li                   {width: 95%; border: 1px solid; -webkit-border-radius: 5px; position: relative; margin: 2.5%; margin-top: 5px; margin-bottom: 5px; list-style: none; background: -webkit-gradient(linear, left top, left bottom, from(#4f4f4f), to(#3f3f3f)); -webkit-box-shadow: #222 0px 0px 2px; border-color: #222;}
+  .all_day_events li .wrap             {padding: 3px; display: block; color: #D3D3D3; padding-left: 5px;}
+  .all_day_events li .cal              {position: absolute; right: 0; padding: 3px; -webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px; top: 0; border-left: 1px solid;}
+
+  .timed_events                       {list-style: none; float: left; position: relative; width: 300px;}
+  .timed_events .timeslot             {height: 119px; border-bottom: 1px solid; position: relative;}
+  .timed_events .timeslot span        {position: absolute; left: 0; top: -13px; padding: 2px; border: 1px solid; z-index: 2;}
+  .timed_events .event                {position: absolute; border: 1px solid; -webkit-border-radius: 5px; padding: 2px; width: 230px; margin-left: 50px;}
+  .timed_events .timeslot             {border-bottom-color: #222;}
+  .timed_events .timeslot span        {background: #454545; border-color: #222; color: #D3D3D3;}
+  .timed_events .event                {background: -webkit-gradient(linear, left top, left bottom, from(#4f4f4f), to(#3f3f3f)); -webkit-box-shadow: #222 0px 0px 2px; border-color: #222;}
+	.timed_events .event span						{color: #D3D3D3; margin-left: 5px;}
+	::-webkit-scrollbar           			{display: none;}
+
+	#track .widget ul.all_day_events 		{padding-left: 0px;}
+	#track .widget ul.timed_events			{padding-left: 2px;}
+</style>
+<% end -%>
+
+<div class="widget calendar">
   <div class="header">
     <h2><%= widget.class.title %></h2>
   </div>
 
+	<% if !widget.needs_to_reauth %>
+  	<div class="events_hold">
+    
+  	<ul class="all_day_events">
+  		<% widget.all_day_events.each do |event| %>
+  			<li>
+  				<span class="wrap">
+  					<%= event[:title] %>
+  				</span>
+  			</li>
+  		<% end %>
+  	</ul>
+
+		<ul class="timed_events">
+			<li class="timeslot"><span>0:00</span></li>
+			<li class="timeslot"><span>1:00</span></li>
+			<li class="timeslot"><span>2:00</span></li>
+			<li class="timeslot"><span>3:00</span></li>
+			<li class="timeslot"><span>4:00</span></li>
+			<li class="timeslot"><span>5:00</span></li>
+			<li class="timeslot"><span>6:00</span></li>
+			<li class="timeslot"><span>7:00</span></li>
+			<li class="timeslot"><span>8:00</span></li>
+			<li class="timeslot"><span>9:00</span></li>
+			<li class="timeslot"><span>10:00</span></li>
+			<li class="timeslot"><span>11:00</span></li>
+			<li class="timeslot"><span>12:00</span></li>
+			<li class="timeslot"><span>13:00</span></li>
+			<li class="timeslot"><span>14:00</span></li>
+			<li class="timeslot"><span>15:00</span></li>
+			<li class="timeslot"><span>16:00</span></li>
+			<li class="timeslot"><span>17:00</span></li>
+			<li class="timeslot"><span>18:00</span></li>
+			<li class="timeslot"><span>19:00</span></li>
+			<li class="timeslot"><span>20:00</span></li>
+			<li class="timeslot"><span>21:00</span></li>
+			<li class="timeslot"><span>22:00</span></li>
+			<li class="timeslot"><span>23:00</span></li>
+			<% widget.timed_events.each do |event| %>
+			<li class="event" style="top:<%=event[:top_position]%>px; height:<%=event[:height]%>px">
+				<span><%=event[:title]%></span>
+			</li>
+			<% end %>
+		</ul>
+  	
+  </div>
+	<% else %>
+		<div class="google_auth">
+      <a href="https://accounts.google.com/o/oauth2/auth?client_id=73940937617.apps.googleusercontent.com&amp;redirect_uri=http://localhost:3001/api/return_from_google&amp;scope=http://www.google.com/calendar/feeds/default/owncalendars/full/&amp;response_type=code&amp;state=widget-<%= widget.id %>" class="button">Authorize with Google</a>
+    </div>
+	<% end %>
   
 </div>
