@@ -28,7 +28,12 @@ class BusWidget < Widget
   end
   
   def stop_times
-    serialized_current_data[:stop_times_raw].collect{|str| str[1]}.sort
+    ret = case Date.today.wday
+          when 6 then serialized_current_data[:stop_times_saturdays_raw].collect{|str| str[1]}.sort
+          when 7 then serialized_current_data[:stop_times_sundays_raw].collect{|str| str[1]}.sort
+          else serialized_current_data[:stop_times_weekdays_raw].collect{|str| str[1]}.sort
+          end
+    ret
   rescue NoMethodError
     []
   end

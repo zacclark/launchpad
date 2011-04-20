@@ -17,8 +17,10 @@ class DataRunner::Bus < DataRunner::Base
       puts "Current data does not match stop setting, re-mining."
       stop_info = get_stop_info(stop)
       trips = get_trips(line)
-      stop_times = get_stop_times(stop_info, trips)
-      @widget.serialized_current_data[:stop_times_raw] = stop_times
+      weekdays, sat, sun = get_stop_times(stop_info, trips)
+      @widget.serialized_current_data[:stop_times_weekdays_raw] = weekdays
+      @widget.serialized_current_data[:stop_times_saturdays_raw] = sat
+      @widget.serialized_current_data[:stop_times_sundays_raw] = sun
       @widget.serialized_current_data[:stop_info] = stop_info
       @widget.serialized_current_data[:saved_stop_id] = stop
       @widget.serialized_current_data[:saved_line] = line
@@ -60,16 +62,27 @@ class DataRunner::Bus < DataRunner::Base
   # format : trip_id,arrival_time, departure_time,stop_id,stop_sequence,stop_headsign,pickup_type,drop_off_type,shape_dist_traveled
   def get_stop_times(stop,trips)
     trip_ids = trips.collect{|t| t[2]}
-    stop_times = []
+    weekday_trip_ids = trips.collect{|t| t[2] if t[1] == "WK"}.compact
+    sat_trip_ids = trips.collect{|t| t[2] if t[1] == "SA"}.compact
+    sun_trip_ids = trips.collect{|t| t[2] if t[1] == "SU"}.compact
+    # stop_times = []
+    stop_times_weekday = []
+    stop_times_sat = []
+    stop_times_sun = []
     
     f = File.open("lib/rtd-data/stop_times.txt")
     f.each_line do |line|
       line_as_array = line.split(",")
-      stop_times << line_as_array if trip_ids.include?(line_as_array[0]) && stop[0] == line_as_array[3]
+      if stop[0] == line_as_array[3] # correct stop
+        # stop_times << line_as_array if trip_ids.include?(line_as_array.first)
+        stop_times_weekday << line_as_array if weekday_trip_ids.include?( line_as_array.first )
+        stop_times_sat << line_as_array if sat_trip_ids.include?( line_as_array.first )
+        stop_times_sun << line_as_array if sun_trip_ids.include?( line_as_array.first )
+      end
     end
     f.close
     
-    return stop_times
+    return stop_times_weekday, stop_times_sat, stop_times_sun
   end
   
 end
