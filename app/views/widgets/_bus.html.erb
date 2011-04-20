@@ -1,8 +1,11 @@
 <% content_for :head do -%>
   <style type="text/css" media="screen">
-    .stop_overflow          {height: 350px; width: 290px; margin-left: -5px; padding: 0 5px; float: left; overflow-y: scroll;}
+    .stop_overflow          {height: /*332px*/ 327px; width: 290px; margin-left: -5px; padding: 0 5px; float: left; overflow-y: scroll; -webkit-border-radius: 0 0 5px 5px;}
     ::-webkit-scrollbar     {display: none;}
+    .stop_times .section .time {float: left;}
+    .stop_times .section .until {float: right;}
     .stop_times             {float: left;}
+    .stop_times .section.old {color: #999;}
   </style>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
@@ -40,7 +43,7 @@
       var stops = [];
       $('.stop_times .section').each(function(){
         var element = $(this);
-        var time_string = element.text();
+        var time_string = element.find('.time').text();
         var time_array = time_string.split(":");
         var time = new Date();
         time.setHours( time_array[0] );
@@ -55,10 +58,9 @@
       var timeout_for_parse = 10e3;
       parse_stops = function() {
         now = new Date();
+        if (window.doing_vert_scroll) {return false}
         $.each(stops, function(){
-          if (now > this.stop_time) {
-            this.element.remove();
-          } else {
+          if (true) {
             var time_until = parseInt( ((this.stop_time - now)/1000)/60 );
             var time_until_hours = 0;
             
@@ -67,12 +69,25 @@
               time_until -= 60;
             }
             var text = "";
-            if (time_until_hours == 0) {
-              text = time_until + " minute(s)";
-            } else {
-              text = time_until_hours + "hour(s), " + time_until + " minute(s)"
+            var minute = time_until == 1 ? "minute" : "minutes";
+            if (time_until < 0) {
+              minute += " ago";
+              time_until *= -1;
             }
-            this.element.text(text);
+            var hour = time_until_hours == 1 ? "hour" : "hours";
+            if (time_until_hours == 0) {
+              text = time_until + " " + minute;
+            } else {
+              text = time_until_hours + hour + ", " + time_until + " " + minute;
+            }
+            this.element.find('.until').text(text);
+          }
+          if (now > this.stop_time) {
+            if (now - this.stop_time < 60e3 * 30) {
+              this.element.addClass('old');
+            } else {
+              this.element.remove();
+            }
           }
         });
         setTimeout("parse_stops()", timeout_for_parse);
@@ -91,11 +106,18 @@
     <h3>Stop:</h3>
     <p><%= widget.stop_name %></p>
   </div>
+  <div class="section common" style="-webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3)">
+    <h3>Route:</h3>
+    <p><%= widget.line %></p>
+  </div>
 
   <div class="stop_overflow">
     <div class="stop_times">
       <% widget.stop_times.each do |stop| %>
-        <div class="section"><%= stop %></div>
+        <div class="section">
+          <div class="time"><%= stop %></div>
+          <div class="until"></div>
+        </div>
       <% end %>
     </div>
   </div>
