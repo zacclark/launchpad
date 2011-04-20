@@ -1,3 +1,41 @@
+<% content_for :head do -%>
+  <style type="text/css" media="screen">
+    .stop_overflow          {height: 350px; width: 290px; margin-left: -5px; padding: 0 5px; float: left; overflow-y: scroll;}
+    ::-webkit-scrollbar     {display: none;}
+    .stop_times             {float: left;}
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      $('.stop_overflow').each(function(){
+        var me = $(this);
+        var list_location = 0;
+        var swipe_start;
+        var passer;
+        $(me).bind({
+          touchstart: function(event){
+            swipe_start = event.originalEvent.targetTouches[0].clientY;
+          },
+          touchmove: function(event){
+            event.preventDefault();
+            var swipe_current = event.originalEvent.targetTouches[0].clientY;
+            var swipe_change = swipe_current - swipe_start;
+            var distance = -1*swipe_change + list_location;
+            me.scrollTop(distance);
+            passer = distance;
+          },
+          touchend: function(event){
+            if (passer > 0) {
+              list_location = passer;
+            } else {
+              list_location = 0;
+            }
+          }
+        });
+      });
+    });
+  </script>
+<% end -%>
+
 <div class="widget bus">
   <div class="header">
     <h2><%= widget.class.title %></h2>
@@ -5,12 +43,14 @@
   
   <div class="section common">
     <h3>Stop:</h3>
-    <p><%= widget.stop_name %></p>
+    <p><%= widget.stop_name %> <span id="woo"></span></p>
   </div>
 
-  <div class="stop_overflow">
-    <% widget.stop_times.each do |stop| %>
-      <div class="section"><%= stop %></div>
-    <% end %>
+  <div class="stop_overflow" id="testing">
+    <div class="stop_times">
+      <% widget.stop_times.each do |stop| %>
+        <div class="section"><%= stop %></div>
+      <% end %>
+    </div>
   </div>
 </div>
