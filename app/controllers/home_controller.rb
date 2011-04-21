@@ -18,6 +18,7 @@ class HomeController < ApplicationController
     @widget.access_code = params[:code]
     @widget.grant_token_from_auth_code
     if @widget.save
+      @widget.update_data
       redirect_to widgets_path
     else
       redirect_to edit_widget_path(@widget)
