@@ -19,10 +19,9 @@ class CalWidget < Widget
     serialized_settings[:access_code]
   end
   
-  before_save :grant_token_from_auth_code
+  # before_save :grant_token_from_auth_code
   def grant_token_from_auth_code
-    return unless self.access_code and self.refresh_token == nil
-    return if self.access_token and self.refresh_token != nil
+    return unless self.access_code
     runner = self.class.data_runner.new(self)
     data =  RestClient.post runner.google_path,
     	        :code => self.access_code,
