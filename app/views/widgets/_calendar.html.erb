@@ -19,6 +19,39 @@
 	#track .widget ul.all_day_events 		{padding-left: 0px;}
 	#track .widget ul.timed_events			{padding-left: 2px;}
 </style>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+      // scrolling
+      $('.events_hold').each(function(){
+        var me = $(this);
+        var list_location = 0;
+        var swipe_start;
+        var passer;
+        $(me).bind({
+          touchstart: function(event){
+            swipe_start = event.originalEvent.targetTouches[0].clientY;
+            window.doing_vert_scroll = true;
+          },
+          touchmove: function(event){
+            event.preventDefault();
+            var swipe_current = event.originalEvent.targetTouches[0].clientY;
+            var swipe_change = swipe_current - swipe_start;
+            var distance = -1*swipe_change + list_location;
+            me.scrollTop(distance);
+            passer = distance;
+          },
+          touchend: function(event){
+            if (passer > 0) {
+              list_location = passer;
+            } else {
+              list_location = 0;
+            }
+            window.doing_vert_scroll = false;
+          }
+        });
+      });
+    });
+</script>
 <% end -%>
 
 <div class="widget calendar">
