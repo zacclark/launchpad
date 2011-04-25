@@ -16,7 +16,8 @@ class DataRunner::Calendar < DataRunner::Base
     @google_path   = 'https://accounts.google.com/o/oauth2/token'
     @client_id     = '73940937617.apps.googleusercontent.com'
     @client_secret = 'ANX1uCUyFeMDMop7Ts6Zc11P'
-    @redirect_url  = 'http://localhost:3001/api/return_from_google'
+    # @redirect_url  = 'http://localhost:3001/api/return_from_google'
+    @redirect_url  = 'http://oolaunchpad.heroku.com/api/return_from_google'
     @google_cal_path = 'https://www.google.com/calendar/feeds/default/owncalendars/full'
   end
   
